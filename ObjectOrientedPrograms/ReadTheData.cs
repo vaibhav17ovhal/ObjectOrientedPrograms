@@ -27,5 +27,22 @@ namespace ObjectOrientedPrograms
                 }
             }
         }
+        public StockAccount Read2(string path2)
+        {
+            using (StreamReader file2 = new StreamReader(path2))
+            {
+                try
+                {
+                    string json2 = file2.ReadToEnd();
+                    return JsonConvert.DeserializeObject<StockAccount>(json2);
+
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    return null;
+                }
+            }
+        }
     }
 }

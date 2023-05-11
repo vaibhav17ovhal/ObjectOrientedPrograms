@@ -11,9 +11,11 @@ namespace ObjectOrientedPrograms
             Console.WriteLine("==========||==========");
 
             string path = "C:\\Users\\Dell\\Desktop\\BL_Session\\ObjectOrientedPrograms\\ObjectOrientedPrograms\\Inventory.json";
+            string path2 = "C:\\Users\\Dell\\Desktop\\BL_Session\\ObjectOrientedPrograms\\ObjectOrientedPrograms\\Stock.json";
 
             ReadTheData read = new ReadTheData();
 
+            /*
             InventoryDetails data = read.Read(path);
 
             Console.WriteLine("==========|Rice|==========");
@@ -43,6 +45,20 @@ namespace ObjectOrientedPrograms
                 int inventoryprice = data.typeOfWheats[k].weight * data.typeOfWheats[k].price;
                 Console.WriteLine("The Price of {0} Kg of Wheats of type {1} is {2} Rs. \n", data.typeOfWheats[k].weight, data.typeOfWheats[k].name, inventoryprice);
             }
+            */
+            StockAccount account = read.Read2(path2);
+
+            Console.WriteLine("==========|Stock Report|==========");
+            for (int x = 0 ; x < account.stockReport.Count; x++)
+            {
+                Console.WriteLine(account.stockReport[x].stockName);
+                Console.WriteLine(account.stockReport[x].numberOfShare);
+                Console.WriteLine(account.stockReport[x].sharePrice);
+                int totalstockprice = account.stockReport[x].numberOfShare * account.stockReport[x].sharePrice;
+                double stockprice = account.stockReport[x].sharePrice / account.stockReport[x].numberOfShare;
+                Console.WriteLine($"The value of each stock is {stockprice}");
+                Console.WriteLine("Total value of stock of {0} is {1}. \n", account.stockReport[x].stockName, totalstockprice);
+            }                    
         }
     }
 }
